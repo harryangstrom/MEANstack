@@ -2,6 +2,18 @@
 
   There are some minor modifications to the default Express setup
   Each is commented and marked with [SH] to make them easy to find
+https://www.sitepoint.com/user-authentication-mean-stack/
+
+Procedimiento para arrancar:
+mongod - levanta mongodb
+mougoui - levanta interfaz web para revisar las entradas en la bbdd meanAuth
+desde el directorio de la aplicación: npm start - levanta el servidor web api y la conexión con mongodb. El servidor estará escuchando en localhost:3000
+desde el directorio de clientA7: ng serve --open - levanta el cliente servido desde el puerto localhost:4200
+están creados tres usuarios: carlos@carlos pw carlos - ab@ab pw ab - adrian@adrian pw adrian
+en localstorage se almancena el jwt de la sesión abierta. el cambio intermedio está codificado en base64 y se puede verificar el contenido decodificandolo en 
+https://www.base64decode.org/
+Una vez decodificado, se pueden comprobar los campos de la expiración (exp) y emisión (iat) en 
+https://www.epochconverter.com/
 
  */
 
@@ -14,6 +26,9 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 // [SH] Require Passport
 var passport = require('passport');
+
+// Using the dotenv for secrets management: https://medium.com/ibm-watson-data-lab/environment-variables-or-keeping-your-secrets-secret-in-a-node-js-app-99019dfff716
+require('dotenv').config();
 
 // [SH] Bring in the data model
 require('./api/models/db');
